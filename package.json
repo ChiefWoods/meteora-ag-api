@@ -11,6 +11,7 @@
     "lint:check": "oxlint",
     "prepare": "husky",
     "release": "bun run build && changeset publish",
+    "typecheck": "tsc --noEmit",
     "version": "changeset version"
   },
   "devDependencies": {
