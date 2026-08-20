@@ -1,5 +1,5 @@
-name: Publish package
-run-name: Publish ${{ github.ref_name }}
+name: Publish npm package
+run-name: Publish npm package ${{ github.ref_name }}
 
 on:
   push:

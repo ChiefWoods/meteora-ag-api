@@ -1,0 +1,72 @@
+name: Rust CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/ci-rust.yml"
+      - "bun.lock"
+      - "Cargo.lock"
+      - "Cargo.toml"
+      - "clients/rust/**"
+      - "generated/rust/**"
+      - "openapi/**"
+      - "openapitools.rust.json"
+      - "package.json"
+      - "scripts/generate-rust-client.ts"
+      - "scripts/normalize-openapi.ts"
+  pull_request:
+    paths:
+      - ".github/workflows/ci-rust.yml"
+      - "bun.lock"
+      - "Cargo.lock"
+      - "Cargo.toml"
+      - "clients/rust/**"
+      - "generated/rust/**"
+      - "openapi/**"
+      - "openapitools.rust.json"
+      - "package.json"
+      - "scripts/generate-rust-client.ts"
+      - "scripts/normalize-openapi.ts"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Generate and check Rust clients
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.3.14
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Generate Rust clients
+        run: bun run generate:rust
+
+      - name: Check default TLS configuration
+        run: cargo check --workspace
+
+      - name: Check rustls configuration
+        run: cargo check --workspace --no-default-features --features rustls
+
+      - name: Ensure generated files are committed
+        run: |
+          git status --short
+          test -z "$(git status --porcelain)"

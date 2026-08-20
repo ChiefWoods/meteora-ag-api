@@ -7,11 +7,11 @@ description = "Meteora API client"
 repository = "https://github.com/ChiefWoods/meteora-ag-api"
 
 [dependencies]
-meteora_damm_v1_api_generated = { package = "meteora-damm-v1-api-generated", path = "../../generated/rust/damm-v1", default-features = false }
-meteora_damm_v2_api_generated = { package = "meteora-damm-v2-api-generated", path = "../../generated/rust/damm-v2", default-features = false }
-meteora_dlmm_api_generated = { package = "meteora-dlmm-api-generated", path = "../../generated/rust/dlmm", default-features = false }
-meteora_dynamic_vault_api_generated = { package = "meteora-dynamic-vault-api-generated", path = "../../generated/rust/dynamic-vault", default-features = false }
-meteora_stake2earn_api_generated = { package = "meteora-stake2earn-api-generated", path = "../../generated/rust/stake2earn", default-features = false }
+meteora_damm_v1_api_generated = { package = "meteora-damm-v1-api-generated", version = "=0.1.0", path = "../../generated/rust/damm-v1", default-features = false }
+meteora_damm_v2_api_generated = { package = "meteora-damm-v2-api-generated", version = "=0.1.0", path = "../../generated/rust/damm-v2", default-features = false }
+meteora_dlmm_api_generated = { package = "meteora-dlmm-api-generated", version = "=0.1.0", path = "../../generated/rust/dlmm", default-features = false }
+meteora_dynamic_vault_api_generated = { package = "meteora-dynamic-vault-api-generated", version = "=0.6.0", path = "../../generated/rust/dynamic-vault", default-features = false }
+meteora_stake2earn_api_generated = { package = "meteora-stake2earn-api-generated", version = "=0.1.1", path = "../../generated/rust/stake2earn", default-features = false }
 reqwest = { version = "^0.13", default-features = false }
 
 [features]

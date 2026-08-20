@@ -1,9 +1,37 @@
-name: CI
+name: JavaScript CI
 
 on:
   push:
     branches: [main]
+    paths:
+      - ".github/workflows/ci-js.yml"
+      - "bun.lock"
+      - "clients/ts/**"
+      - "generated/ts/**"
+      - "lint-staged.config.ts"
+      - "openapi/**"
+      - "openapitools.json"
+      - "oxfmt.config.ts"
+      - "oxlint.config.ts"
+      - "package.json"
+      - "scripts/normalize-openapi.ts"
+      - "tsconfig.json"
+      - "tsdown.config.ts"
   pull_request:
+    paths:
+      - ".github/workflows/ci-js.yml"
+      - "bun.lock"
+      - "clients/ts/**"
+      - "generated/ts/**"
+      - "lint-staged.config.ts"
+      - "openapi/**"
+      - "openapitools.json"
+      - "oxfmt.config.ts"
+      - "oxlint.config.ts"
+      - "package.json"
+      - "scripts/normalize-openapi.ts"
+      - "tsconfig.json"
+      - "tsdown.config.ts"
 
 permissions:
   contents: read

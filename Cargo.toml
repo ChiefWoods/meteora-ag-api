@@ -1,6 +1,3 @@
 [workspace]
-members = [
-  "clients/rust",
-  "generated/rust/*"
-]
+members = ["clients/rust", "generated/rust/*"]
 resolver = "2"
