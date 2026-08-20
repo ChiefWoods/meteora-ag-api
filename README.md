@@ -1,5 +1,7 @@
 # Meteora API Client
 
+[![npm version](https://img.shields.io/npm/v/meteora-api)](https://www.npmjs.com/package/meteora-api)
+
 ## Table of Contents
 
 - [Installation](#installation)
