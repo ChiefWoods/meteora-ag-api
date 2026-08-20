@@ -1,0 +1,14 @@
+.openapi-generator-ignore
+apis/APYApi.ts
+apis/VaultsApi.ts
+apis/VirtualPriceApi.ts
+apis/index.ts
+index.ts
+models/ApyState.ts
+models/ProtocolApy.ts
+models/StrategyInfo.ts
+models/VaultAddress.ts
+models/VaultState.ts
+models/VirtualPrice.ts
+models/index.ts
+runtime.ts

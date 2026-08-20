@@ -1,0 +1,13 @@
+.openapi-generator-ignore
+apis/AnalyticsApi.ts
+apis/VaultApi.ts
+apis/index.ts
+index.ts
+models/AggregateAnalyticInfo.ts
+models/Vault.ts
+models/VaultDetailWithLeaderboard.ts
+models/VaultFlags.ts
+models/VaultTopListHolder.ts
+models/VaultsResponse.ts
+models/index.ts
+runtime.ts
