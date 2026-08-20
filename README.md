@@ -92,10 +92,13 @@ bun run build
 
 ### Releases
 
-Create a changeset for a publishable change, then use the release workflow:
+Create a changeset for a publishable change and apply the version locally:
 
 ```bash
 bun run changeset
 bun run version
-bun run release
 ```
+
+Commit the version changes, then create and push a `v*` tag for that version.
+The publish workflow builds the package and publishes it to npm using npm trusted
+publishing; no local `release` command is needed.

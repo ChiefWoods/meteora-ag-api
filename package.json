@@ -38,7 +38,6 @@
     "prepare-openapi": "rm -rf .openapi && mkdir .openapi && bun scripts/normalize-openapi.ts openapi/dlmm/openapi.json .openapi/dlmm.json && bun scripts/normalize-openapi.ts openapi/damm-v1/openapi.json .openapi/damm-v1.json && bun scripts/normalize-openapi.ts openapi/damm-v2/openapi.json .openapi/damm-v2.json && bun scripts/normalize-openapi.ts openapi/dynamic-vault/openapi.json .openapi/dynamic-vault.json && bun scripts/normalize-openapi.ts openapi/stake2earn/openapi.json .openapi/stake2earn.json",
     "generate:ts": "rm -rf generated && bun run prepare-openapi && concurrently --kill-others-on-fail \"npm:openapi-gen:*\"",
     "prepare": "husky",
-    "release": "bun run build && changeset publish",
     "typecheck": "tsc --noEmit",
     "version": "changeset version"
   },
