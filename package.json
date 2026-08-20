@@ -1,8 +1,27 @@
 {
   "name": "meteora-api",
-  "private": true,
+  "version": "0.0.1",
+  "description": "Meteora API client",
+  "homepage": "https://github.com/ChiefWoods/meteora-ag-api",
+  "license": "MIT",
+  "author": "ChiefWoods",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChiefWoods/meteora-ag-api.git"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "type": "module",
-  "module": "index.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "scripts": {
     "build": "bun run generate:ts && tsdown",
     "changeset": "changeset",
