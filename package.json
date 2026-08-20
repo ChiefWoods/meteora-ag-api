@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.1",
+    "@openapitools/openapi-generator-cli": "^2.40.1",
     "@types/bun": "latest",
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",
