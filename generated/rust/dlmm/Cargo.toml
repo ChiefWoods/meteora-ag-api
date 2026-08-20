@@ -1,0 +1,21 @@
+[package]
+name = "meteora-dlmm-api-generated"
+version = "0.1.0"
+authors = ["OpenAPI Generator team and contributors"]
+description = "Indexed DLMM data for pools, portfolios, positions, limit orders, wallets, and protocol stats."
+license = ""
+edition = "2021"
+
+[dependencies]
+serde = { version = "^1.0", features = ["derive"] }
+serde_with = { version = "^3.8", default-features = false, features = ["base64", "std", "macros"] }
+serde_json = "^1.0"
+serde_repr = "^0.1"
+url = "^2.5"
+chrono = { version = "^0.4",  features = ["serde"] }
+reqwest = { version = "^0.13", default-features = false, features = ["json", "multipart", "query", "form"] }
+
+[features]
+default = ["native-tls"]
+native-tls = ["reqwest/native-tls"]
+rustls = ["reqwest/rustls"]

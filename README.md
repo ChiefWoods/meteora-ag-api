@@ -10,13 +10,27 @@
 
 ## Installation
 
-Install the package:
+### TypeScript
 
 ```bash
 bun add meteora-api
 ```
 
+### Rust
+
+```bash
+cargo add meteora-api
+```
+
+TLS defaults to `native-tls`. To use rustls instead:
+
+```bash
+cargo add meteora-api --no-default-features --features rustls
+```
+
 ## Usage
+
+### TypeScript
 
 Each Meteora product has its own client class because its API is served from an
 independent base URL. Instantiate only the client for the product you need:
@@ -40,6 +54,19 @@ Every client uses its product's production base URL by default.
 
 Generated API classes and models are also exported under product-specific
 namespaces such as `DlmmGenerated` and `DammV2Generated`.
+
+### Rust
+
+Rust exposes all product clients from the `meteora-api` crate. Generated bindings
+remain isolated under `generated/rust/<product>`, while the unified client lives
+in `clients/rust`.
+
+```rust
+use meteora_api::DlmmApi;
+
+let dlmm = DlmmApi::default();
+let pools = dlmm.pools.get_pools(None, None, None, None, None).await?;
+```
 
 ## Developing
 
@@ -65,9 +92,9 @@ To add a new OpenAPI specification to the client:
 
 1. Add the source document under `openapi/<product>/openapi.json`.
 2. Add normalization and generator scripts for the product in `package.json`.
-3. Add the product's default base URL and a standalone client class under
-   `clients/ts/`.
-4. Export the client and generated namespace from `clients/ts/index.ts`.
+3. Add the product's default base URL to the TypeScript and Rust product
+   definitions in `clients/ts/` and `scripts/generate-rust-client.ts`.
+4. Export the TypeScript client and generated namespace from `clients/ts/index.ts`.
 5. Run the validation commands below before committing the change.
 
 Use these commands during development:
@@ -76,7 +103,11 @@ Use these commands during development:
 # Normalize source specifications into the generator inputs.
 bun run prepare-openapi
 
-# Generate all product-specific TypeScript clients.
+# Clean, prepare, and generate an individual client.
+bun run generate:js
+bun run generate:rust
+
+# Generate all product-specific clients.
 bun run generate
 
 # Apply lint fixes and verify formatting.
@@ -85,6 +116,9 @@ bun run format:check
 
 # Type-check source and generated clients.
 bun run typecheck
+
+# Compile all Rust wrappers and generated bindings.
+cargo check --workspace
 
 # Regenerate and compile the published ESM, CJS, and declaration output.
 bun run build

@@ -1,0 +1,6 @@
+[workspace]
+members = [
+  "clients/rust",
+  "generated/rust/*"
+]
+resolver = "2"

@@ -27,6 +27,7 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .cache
 .openapi
 *.tsbuildinfo
+target
 
 # IntelliJ based IDEs
 .idea
