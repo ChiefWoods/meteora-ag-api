@@ -23,20 +23,14 @@
     }
   },
   "scripts": {
-    "build": "bun run generate:ts && tsdown",
+    "build": "bun run generate && tsdown",
     "changeset": "changeset",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
-    "generate": "bun run generate:ts",
     "lint": "oxlint --fix",
     "lint:check": "oxlint",
-    "openapi-gen:damm-v1": "openapi-generator-cli generate -i .openapi/damm-v1.json -o generated/ts/damm-v1 -g typescript-fetch --skip-validate-spec",
-    "openapi-gen:damm-v2": "openapi-generator-cli generate -i .openapi/damm-v2.json -o generated/ts/damm-v2 -g typescript-fetch --skip-validate-spec",
-    "openapi-gen:dlmm": "openapi-generator-cli generate -i .openapi/dlmm.json -o generated/ts/dlmm -g typescript-fetch --skip-validate-spec",
-    "openapi-gen:dynamic-vault": "openapi-generator-cli generate -i .openapi/dynamic-vault.json -o generated/ts/dynamic-vault -g typescript-fetch --skip-validate-spec",
-    "openapi-gen:stake2earn": "openapi-generator-cli generate -i .openapi/stake2earn.json -o generated/ts/stake2earn -g typescript-fetch --skip-validate-spec",
-    "prepare-openapi": "rm -rf .openapi && mkdir .openapi && bun scripts/normalize-openapi.ts openapi/dlmm/openapi.json .openapi/dlmm.json && bun scripts/normalize-openapi.ts openapi/damm-v1/openapi.json .openapi/damm-v1.json && bun scripts/normalize-openapi.ts openapi/damm-v2/openapi.json .openapi/damm-v2.json && bun scripts/normalize-openapi.ts openapi/dynamic-vault/openapi.json .openapi/dynamic-vault.json && bun scripts/normalize-openapi.ts openapi/stake2earn/openapi.json .openapi/stake2earn.json",
-    "generate:ts": "rm -rf generated && bun run prepare-openapi && concurrently --kill-others-on-fail \"npm:openapi-gen:*\"",
+    "openapi-gen": "openapi-ts -f openapi-ts.config.ts",
+    "generate": "rm -rf generated && bun run openapi-gen",
     "prepare": "husky",
     "prepublishOnly": "bun run typecheck && bun run build",
     "typecheck": "tsc --noEmit",
@@ -44,14 +38,13 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.1",
-    "@openapitools/openapi-generator-cli": "^2.40.1",
+    "@hey-api/openapi-ts": "0.99.0",
     "@types/bun": "latest",
-    "concurrently": "^10.0.5",
     "husky": "^9.1.7",
     "lint-staged": "^17.3.0",
     "oxfmt": "^0.61.0",
     "oxlint": "^1.76.0",
     "tsdown": "^0.22.14",
-    "typescript": "7.0.2"
+    "typescript": "6.0.3"
   }
 }

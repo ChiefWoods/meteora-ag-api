@@ -25,21 +25,43 @@ independent base URL. Instantiate only the client for the product you need:
 import { DlmmApi } from "meteora-api";
 
 const dlmm = new DlmmApi();
-const pools = await dlmm.pools.getPools({});
+const { data, error } = await dlmm.pools.getPools();
+```
+
+Override the default host, headers, or fetch implementation by passing a
+product-specific client:
+
+```ts
+import { DlmmApi, createDlmmApiClient } from "meteora-api";
+
+const dlmm = new DlmmApi({
+  client: createDlmmApiClient({
+    baseUrl: "https://dlmm.datapi.meteora.ag",
+    headers: {
+      "x-custom-header": "value",
+    },
+  }),
+});
 ```
 
 The available clients are:
 
-- `DlmmApi`
-- `DammV1Api`
-- `DammV2Api`
-- `DynamicVaultApi`
-- `Stake2EarnApi`
+- `DlmmApi` with `createDlmmApiClient`
+- `DammV1Api` with `createDammV1ApiClient`
+- `DammV2Api` with `createDammV2ApiClient`
+- `DynamicVaultApi` with `createDynamicVaultApiClient`
+- `Stake2EarnApi` with `createStake2EarnApiClient`
 
-Every client uses its product's production base URL by default.
+Every client uses its product's production base URL by default. Generated
+request and response types are exported under product-specific namespaces such
+as `DlmmApiTypes` and `DammV2ApiTypes`.
 
-Generated API classes and models are also exported under product-specific
-namespaces such as `DlmmGenerated` and `DammV2Generated`.
+### Why class-based SDKs?
+
+This package intentionally uses Hey API's class-based, nested SDK generation.
+Each product class mirrors that API's tagged resources (`pools`, `limitOrders`,
+and so on), making endpoints discoverable and keeping products isolated even
+when their OpenAPI operation names overlap.
 
 ## Developing
 
@@ -56,27 +78,23 @@ by Meteora product. Because each product has its own API origin and may define
 overlapping operation names, each specification generates into its own
 directory and is exposed through its own client class.
 
-`prepare-openapi` normalizes the upstream OpenAPI 3.1 documents into the
-temporary, ignored `.openapi/` directory. This is required because the current
-TypeScript fetch generator expects the nullable schemas in OpenAPI 3.0 form.
-The source documents under `openapi/` are not modified.
-
 To add a new OpenAPI specification to the client:
 
 1. Add the source document under `openapi/<product>/openapi.json`.
-2. Add normalization and generator scripts for the product in `package.json`.
-3. Add the product's default base URL and a standalone client class under
-   `clients/ts/`.
-4. Export the client and generated namespace from `clients/ts/index.ts`.
+2. Add a Hey API generation target in `openapi-ts.config.ts` with the product
+   tag paths and SDK class name. A new host requires a separately named SDK
+   class.
+3. Export the generated class, client factory, and types from `src/index.ts`.
+4. Run `bun run generate` to rebuild the typed clients under `generated/`.
 5. Run the validation commands below before committing the change.
 
 Use these commands during development:
 
 ```bash
-# Normalize source specifications into the generator inputs.
-bun run prepare-openapi
+# Generate from the existing source specifications.
+bun run openapi-gen
 
-# Generate all product-specific TypeScript clients.
+# Clean generated output and generate the client.
 bun run generate
 
 # Apply lint fixes and verify formatting.
