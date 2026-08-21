@@ -85,17 +85,17 @@ To add a new OpenAPI specification to the client:
    tag paths and SDK class name. A new host requires a separately named SDK
    class.
 3. Export the generated class, client factory, and types from `src/index.ts`.
-4. Run `bun run generate` to rebuild the typed clients under `generated/`.
+4. Run `bun run generate:ts` to rebuild the typed clients under `generated/ts/`.
 5. Run the validation commands below before committing the change.
 
 Use these commands during development:
 
 ```bash
 # Generate from the existing source specifications.
-bun run openapi-gen
+bun run openapi-gen:ts
 
 # Clean generated output and generate the client.
-bun run generate
+bun run generate:ts
 
 # Apply lint fixes and verify formatting.
 bun run lint
