@@ -1,0 +1,47 @@
+name: CI (Rust)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/ci-rust.yml"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "crates/**"
+      - "justfile"
+      - "openapi/**"
+      - "openapi-to-rust.*.toml"
+  pull_request:
+    paths:
+      - ".github/workflows/ci-rust.yml"
+      - "Cargo.toml"
+      - "Cargo.lock"
+      - "crates/**"
+      - "justfile"
+      - "openapi/**"
+      - "openapi-to-rust.*.toml"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Format, check, and build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Rust 1.88
+        uses: dtolnay/rust-toolchain@1.88
+        with:
+          components: rustfmt
+
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+
+      - name: Type-check
+        run: cargo check --workspace
+
+      - name: Build
+        run: cargo build --workspace

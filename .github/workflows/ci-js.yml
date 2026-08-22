@@ -1,10 +1,10 @@
-name: CI
+name: CI (JavaScript)
 
 on:
   push:
     branches: [main]
     paths:
-      - ".github/workflows/ci.yml"
+      - ".github/workflows/ci-js.yml"
       - "packages/**"
       - "openapi/**"
       - "package.json"
@@ -14,7 +14,7 @@ on:
       - "oxlint.config.ts"
   pull_request:
     paths:
-      - ".github/workflows/ci.yml"
+      - ".github/workflows/ci-js.yml"
       - "packages/**"
       - "openapi/**"
       - "package.json"
