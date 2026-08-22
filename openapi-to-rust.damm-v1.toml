@@ -1,0 +1,14 @@
+[generator]
+spec_path = "openapi/damm-v1/openapi.json"
+output_dir = "crates/meteora-api/generated/damm_v1"
+module_name = "damm_v1"
+
+[generator.builders]
+enabled = true
+threshold = 0
+
+[features]
+enable_async_client = true
+
+[http_client]
+base_url = "https://damm-api.meteora.ag"

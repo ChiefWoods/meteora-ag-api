@@ -1,0 +1,14 @@
+[generator]
+spec_path = "openapi/stake2earn/openapi.json"
+output_dir = "crates/meteora-api/generated/stake2earn"
+module_name = "stake2earn"
+
+[generator.builders]
+enabled = true
+threshold = 0
+
+[features]
+enable_async_client = true
+
+[http_client]
+base_url = "https://stake-for-fee-api.meteora.ag"

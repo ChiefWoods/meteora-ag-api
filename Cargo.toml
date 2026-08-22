@@ -1,0 +1,14 @@
+[workspace]
+members = ["crates/meteora-api"]
+resolver = "3"
+
+[workspace.metadata.changeset]
+base-branch = "main"
+changelog = "per-package"
+commit = false
+comparison-links = "auto"
+keep-changesets = false
+none-bump-behavior = "disallow"
+tag-format = "crate-prefixed"
+tags = true
+zero-version-behavior = "effective-minor"

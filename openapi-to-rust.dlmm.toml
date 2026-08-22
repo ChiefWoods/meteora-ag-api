@@ -1,0 +1,14 @@
+[generator]
+spec_path = "openapi/dlmm/openapi.json"
+output_dir = "crates/meteora-api/generated/dlmm"
+module_name = "dlmm"
+
+[generator.builders]
+enabled = true
+threshold = 0
+
+[features]
+enable_async_client = true
+
+[http_client]
+base_url = "https://dlmm.datapi.meteora.ag"

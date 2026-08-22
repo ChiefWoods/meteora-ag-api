@@ -1,0 +1,14 @@
+[generator]
+spec_path = "openapi/dynamic-vault/openapi.json"
+output_dir = "crates/meteora-api/generated/dynamic_vault"
+module_name = "dynamic_vault"
+
+[generator.builders]
+enabled = true
+threshold = 0
+
+[features]
+enable_async_client = true
+
+[http_client]
+base_url = "https://merv2-api.meteora.ag"
