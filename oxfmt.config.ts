@@ -2,8 +2,8 @@ import { defineConfig } from "oxfmt";
 
 export default defineConfig({
   ignorePatterns: [
-    "dist/**",
-    "generated/**",
+    "**/dist/**",
+    "**/generated/**",
     "node_modules/**",
     "openapi/**",
     "README.md",

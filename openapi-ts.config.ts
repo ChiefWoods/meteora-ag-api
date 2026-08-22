@@ -16,7 +16,7 @@ function nestByTags(containerName: string, tags: Record<string, readonly string[
 export default defineConfig([
   {
     input: "./openapi/dlmm/openapi.json",
-    output: "generated/ts/dlmm",
+    output: "packages/meteora-api/generated/dlmm",
     plugins: [
       "@hey-api/client-fetch",
       {
@@ -38,7 +38,7 @@ export default defineConfig([
   },
   {
     input: "./openapi/damm-v1/openapi.json",
-    output: "generated/ts/damm-v1",
+    output: "packages/meteora-api/generated/damm-v1",
     plugins: [
       "@hey-api/client-fetch",
       {
@@ -57,7 +57,7 @@ export default defineConfig([
   },
   {
     input: "./openapi/damm-v2/openapi.json",
-    output: "generated/ts/damm-v2",
+    output: "packages/meteora-api/generated/damm-v2",
     plugins: [
       "@hey-api/client-fetch",
       {
@@ -75,7 +75,7 @@ export default defineConfig([
   },
   {
     input: "./openapi/dynamic-vault/openapi.json",
-    output: "generated/ts/dynamic-vault",
+    output: "packages/meteora-api/generated/dynamic-vault",
     plugins: [
       "@hey-api/client-fetch",
       {
@@ -94,7 +94,7 @@ export default defineConfig([
   },
   {
     input: "./openapi/stake2earn/openapi.json",
-    output: "generated/ts/stake2earn",
+    output: "packages/meteora-api/generated/stake2earn",
     plugins: [
       "@hey-api/client-fetch",
       {

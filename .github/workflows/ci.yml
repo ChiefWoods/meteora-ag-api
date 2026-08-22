@@ -3,7 +3,25 @@ name: CI
 on:
   push:
     branches: [main]
+    paths:
+      - ".github/workflows/ci.yml"
+      - "packages/**"
+      - "openapi/**"
+      - "package.json"
+      - "bun.lock"
+      - "openapi-ts.config.ts"
+      - "oxfmt.config.ts"
+      - "oxlint.config.ts"
   pull_request:
+    paths:
+      - ".github/workflows/ci.yml"
+      - "packages/**"
+      - "openapi/**"
+      - "package.json"
+      - "bun.lock"
+      - "openapi-ts.config.ts"
+      - "oxfmt.config.ts"
+      - "oxlint.config.ts"
 
 permissions:
   contents: read
